@@ -22,6 +22,7 @@ import Layout from '~/layouts/Base.astro'
 
     const scan = await scanBadge(data)
 
+    Alpine.store('scanner').stop()
     Alpine.store('scanner').scans.push(scan)
   }
 
@@ -79,7 +80,16 @@ import Layout from '~/layouts/Base.astro'
     }).then((res) => res.json())
   }
 
-  Alpine.store('scanner').scans = [] //await getScans()
+  const scanBadge = async (badge: string) => {
+    return await fetch(`https://execut.fly.dev/scans/${badge}`, {
+      method: 'post',
+      headers: new Headers({
+        'Authorization': `Bearer ${token}`,
+      }),
+    }).then((res) => res.json())
+  }
+
+  Alpine.store('scanner').scans = await getScans()
 
   Alpine.start()
 </script>

@@ -1,8 +1,42 @@
 ---
 import Layout from '~/layouts/Section.astro'
+
+import Container from '~/components/Container.astro'
+import Section from '~/components/Section.astro'
 ---
 
 <Layout title="Want to join the commmittee?">
-  Text
-</Layout>
+  <Container>
+    <Section>
+      <h1 class="font-mono text-3xl font-bold text-red sm:text-4xl">
+        Intrested in exec(ut) 2024?
+      </h1>
 
+      <p class="mt-4 sm:mt-8">
+        If you would like to be part of the committee responsible for the next
+        edition of exec(ut), you can let us know through <a
+          class="underline transition-colors text-green hover:text-green/80"
+          href="https://forms.gle/LB8HTdQgbXU64DFs8">this form</a
+        >. The new committee will start in the summer of 2023, with the new
+        conference taking place sometime between March and April of 2024.
+      </p>
+
+      <p class="mt-4 sm:mt-8">
+        We estimate that as an organising member the workload is about 5 hours a
+        week, although the pdistribution varies greatly throughout the year and
+        also per role. The frequency of meetings also varies; either weekly or
+        bi-weekly. Organising a conference is a lot of work, but also very
+        rewarding and great fun!
+      </p>
+
+      <p class="mt-4 sm:mt-8">
+        If you have any questions, you can approach previous committee members
+        or the board of Stichting Sticky via <a
+          class="underline transition-colors text-green hover:text-green/80"
+          href="mailto:bestuur@stichtingsticky.nl">
+          bestuur@stichtingsticky.nl</a
+        >.
+      </p>
+    </Section>
+  </Container>
+</Layout>
