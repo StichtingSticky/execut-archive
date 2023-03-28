@@ -1,0 +1,41 @@
+---
+import { Icon } from 'astro-icon'
+
+import Container from '~/components/Container.astro'
+
+const socials = {
+  instagram: 'https://www.instagram.com/execut_conference/',
+  linkedin: 'https://www.linkedin.com/showcase/execut-conference/',
+  youtube: 'https://www.youtube.com/@execut_cc',
+}
+---
+
+<footer class="flex-1 py-8 text-white bg-brown">
+  <Container>
+    {Object.entries(socials).map(([name, href]) => (
+      <a href={href}>
+        <Icon
+          class="w-10 h-10 p-1 transition-colors fill-white hover:bg-off-white/40"
+          name={name} />
+      </a>
+    ))}
+
+    <br />
+
+    <p class="my-2">
+      Please take note of our
+      <a class="underline" href="/documents/code-of-conduct.pdf">Code of Conduct</a>,
+      <a class="underline" href="/documents/privacy-policy.pdf">Privacy Policy</a>, and
+      <a class="underline" href="/documents/general-terms.pdf">General Terms</a>.
+    </p>
+
+    <br />
+
+    <p class="my-2">
+      exec(ut) is an event organised by
+      <a class="underline" href="https://stichtingsticky.nl/">Stichting Sticky</a>.
+    </p>
+
+    <p class="my-2">All rights reserved.</p>
+  </Container>
+</footer>

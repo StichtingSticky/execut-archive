@@ -1,0 +1,63 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+
+import Slot from '~/components/Slot.astro'
+
+export interface Props {
+  previous?: string
+}
+
+const { previous = '/programme' } = Astro.props as Props
+
+export interface Slot {
+  common?: string
+  talk?: CollectionEntry<'talks'>
+  workshop?: CollectionEntry<'workshops'>
+}
+
+export interface Programme {
+  [time: string]: Slot
+}
+
+let programme: Programme = {
+  '09:00': { common: 'Registration' },
+  '10:00': { common: 'Opening' },
+  '12:00': { common: 'Lunch' },
+  '14:55': { common: 'Coffee' },
+  '17:10': { common: 'Closing & Drinks' },
+}
+
+const talks = await getCollection('talks')
+
+talks.forEach((talk) => {
+  const { data } = talk
+  const { time } = data
+
+  if (!(time in programme)) programme[time] = {}
+
+  programme[time].talk = talk
+})
+
+const workshops = await getCollection('workshops')
+
+workshops.forEach((workshop) => {
+  const { data } = workshop
+  const { time } = data
+
+  if (!(time in programme)) programme[time] = {}
+
+  programme[time].workshop = workshop
+})
+---
+
+<ul class="flex flex-col gap-2 my-8 -mx-4 sm:gap-4 sm:my-12">
+  <li class="flex gap-2 p-2 -mb-2">
+    <div class="flex-1 font-mono italic">activities</div>
+    <div class="font-mono italic">starts @</div>
+  </li>
+
+  {Object.entries(programme).sort().map(([time, activities]) => (
+    <Slot time={time} activities={activities} previous={previous} />
+  ))}
+</ul>

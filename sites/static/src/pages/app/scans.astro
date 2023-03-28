@@ -1,0 +1,126 @@
+---
+import { Icon } from 'astro-icon'
+
+import Container from '~/components/Container.astro'
+import Section from '~/components/Section.astro'
+import ActionButton from '~/components/ActionButton.astro'
+import Modal from '~/components/Modal.astro'
+
+import Layout from '~/layouts/Base.astro'
+---
+
+<script>
+  // @ts-nocheck
+  import Scanner from 'qr-scanner'
+
+  const elem = document.querySelector('#scanner')
+
+  const onResult = async (res) => {
+    if (res !== 'Scanner error: No QR code found') scanner.stop()
+
+    const { data } = res
+
+    const scan = await scanBadge(data)
+
+    Alpine.store('scanner').scans.push(scan)
+  }
+
+  const scanner = new Scanner(
+    elem,
+    onResult,
+    { onDecodeError: () => {} },
+  )
+
+  import Alpine from 'alpinejs'
+  import persist from '@alpinejs/persist'
+
+  Alpine.plugin(persist)
+
+  window.Alpine = Alpine
+
+  Alpine.store('auth', {
+    token: null,
+
+    init() {
+      const params = new URLSearchParams(window.location.search)
+
+      const { token } = Object.fromEntries(params.entries())
+
+      if (token) this.token = Alpine.$persist(token)
+    },
+  })
+
+  Alpine.store('scanner', {
+    scans: [],
+
+    open: false,
+
+    start() {
+      this.open = true
+
+      scanner.start()
+    },
+
+    stop() {
+      this.open = false
+
+      scanner.stop()
+    },
+  })
+
+  const token = Alpine.store('auth').token
+
+  const getScans = async () => {
+    return await fetch('https://execut.fly.dev/scans', {
+      method: 'get',
+      headers: new Headers({
+        'Authorization': `Bearer ${token}`,
+      }),
+    }).then((res) => res.json())
+  }
+
+  Alpine.store('scanner').scans = [] //await getScans()
+
+  Alpine.start()
+</script>
+
+<Layout>
+  <Section>
+    <Container>
+      <h1 class="font-mono text-3xl font-bold text-red sm:text-4xl">Scanned badges</h1>
+
+      <ul class="flex flex-col gap-4 mt-4 sm:mt-6" x-data>
+        <template x-for="scan in $store.scanner.scans">
+          <li class="bg-white rounded drop-shadow flex flex-col">
+            <h1 class="text-red font-mono text-xl" x-text="scan.name"></h1>
+
+            <p x-show="scan.attendee.study">
+              <span x-text="scan.attendee.study"></span>(<span x-text="scan.attendee.degree"></span>)
+            </p>
+
+            <p x-show="scan.attendee.instutution" x-text="scan.attendee.instutution"></p>
+            <p x-show="scan.attendee.graduation_year" x-text="scan.attendee.graduation_year"></p>
+
+            <a x-show="scan.attendee.linkedin" :href="scan.attendee.linkedin">
+              <Icon name="linkedin" class="w-8 h-8 transition-colors text-brown hover:text-brown/60" />
+            </a>
+          </li>
+        </template>
+      </ul>
+    </Container>
+  </Section>
+
+  <div x-data>
+    <ActionButton @click="$store.scanner.start()">$_</ActionButton>
+
+    <Modal x-show="$store.scanner.open">
+      <div class="fixed z-50 inset-0 bg-brown/80 backdrop-blur flex flex-col">
+        <button class="ml-auto -mb-14" @click="$store.scanner.stop()">
+          <Icon name="close" class="w-14 h-14 p-4 transition-colors text-white hover:bg-white/40" />
+        </button>
+
+        <video id="scanner" class="w-11/12 m-auto rounded" />
+      </div>
+    </Modal>
+  </div>
+</Layout>

@@ -1,0 +1,12 @@
+{
+  "name": "execut",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://execut.nl/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StichtingSticky/execut.git"
+  },
+  "author": "Sem van Nieuwenhuizen <hello@leuke-naam.fyi>",
+  "private": true
+}

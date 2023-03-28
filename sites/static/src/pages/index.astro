@@ -1,0 +1,70 @@
+---
+import logo from '~/assets/logo.svg'
+
+import Button from '~/components/Button.astro'
+import Layout from '~/layouts/Landing.astro'
+
+const summary = {
+  speakers: {
+    figure: 7,
+    href: '/programme',
+  },
+  workshops: {
+    figure: 3,
+    href: '/programme',
+  },
+  venue: {
+    figure: 'De Kom',
+    href: '/venue',
+  },
+  location: {
+    figure: 'Nieuwegein',
+    href: '/venue',
+  },
+}
+---
+
+<Layout>
+  <header
+    class="flex flex-col px-4 pb-16 lg:bp-28 sm:mx-auto sm:max-w-md sm:pb-20 md:max-w-2xl md:pb-24 lg:max-w-4xl">
+    <img
+      class="w-64 m-auto my-10 sm:hidden"
+      width={256}
+      height={49}
+      src={logo.src}
+      alt="exec(ut) logo"
+    />
+
+    <h1
+      class="my-6 font-mono text-5xl font-bold text-red sm:mt-48 sm:text-6xl sm:leading-snug">
+      A conference for and by IT students.
+    </h1>
+
+    <h2
+      class="my-2 text-2xl leading-snug text-red/80 sm:text-3xl sm:leading-normal">
+      For those willing to look further than their own classroom. We want to work
+      together, inspire each other, and commit ourselves to a better tomorrow.
+      Besides a range of interesting talks exec(ut) provides great networking
+      opportunities to those attending.
+    </h2>
+
+    <Button
+      class="mx-auto mt-12 mb-16"
+      size="large"
+      href="https://pretix.svsticky.nl/execut/2023/">
+      Get your ticket!
+    </Button>
+
+    <figure class="grid grid-cols-2 grid-rows-2 gap-x-2 gap-y-4 sm:gap-6">
+      {Object.entries(summary).map(([title, { figure, href }]) => (
+        <a class="sm:text-center" href={href}>
+          <span class="font-mono text-sm leading-none capitalize text-light-red">
+            {title}
+          </span>
+
+          <p class="mt-2 text-xl font-bold text-brown">{figure}</p>
+        </a>
+      ))}
+    </figure>
+  </header>
+</Layout>

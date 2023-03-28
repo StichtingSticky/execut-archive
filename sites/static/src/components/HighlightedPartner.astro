@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+
+export interface Props {
+  partner: CollectionEntry<'partners'>
+}
+
+const { partner } = Astro.props as Props
+
+const { slug, data, render } = partner
+
+const { name, logo, industry, contact } = data
+
+const { Content } = await render()
+---
+
+<section class="text-white bg-[#2382df]">
+  <img src={logo.src} alt={name} />
+
+  <h1 class="text-3xl font-mono">{name}</h1>
+
+  <div class="line-clamp-5">
+    <Content />
+  </div>
+</section>

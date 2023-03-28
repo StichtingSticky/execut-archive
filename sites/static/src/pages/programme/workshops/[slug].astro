@@ -1,0 +1,46 @@
+---
+import type { InferGetStaticParamsType, InferGetStaticPropsType } from 'astro'
+import { getCollection } from 'astro:content'
+
+import Layout from '~/layouts/Section.astro'
+
+export async function getStaticPaths() {
+  const workshops = await getCollection('workshops')
+
+  return workshops.map((workshop) => {
+    const { slug } = workshop
+
+    return {
+      params: { slug },
+      props: { workshop },
+    }
+  })
+}
+
+export type Params = InferGetStaticParamsType<typeof getStaticPaths>
+export type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { workshop } = Astro.props as Props
+
+const { data, render } = workshop
+
+const { title } = data
+
+const { Content } = await render()
+---
+
+<Layout title={title}>
+  <a
+    class="font-mono underline transition-colors text-green hover:text-green/80"
+    href="/programme"
+    slot="previous">
+    View complete programme</a>
+
+  <h1 class="mt-8 font-mono text-3xl font-bold sm:mt-6 text-red sm:text-4xl">
+    {title}
+  </h1>
+
+  <div class="mt-4 prose text-justify max-w-none sm:mt-6">
+    <Content />
+  </div>
+</Layout>

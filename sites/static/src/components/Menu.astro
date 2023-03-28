@@ -1,0 +1,18 @@
+---
+const sections = {
+  programme: '/programme',
+  partners: '/partners',
+  venue: '/venue',
+  about: '/about',
+}
+---
+
+<menu class="flex justify-center w-full gap-4 py-1">
+  {Object.entries(sections).map(([name, href]) => (
+    <li class="p-2 transition-colors rounded hover:bg-subtle-highlight">
+      <a
+        class="font-mono"
+        href={href}>{name}</a>
+    </li>
+  ))}
+</menu>

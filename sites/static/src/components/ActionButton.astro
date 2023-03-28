@@ -1,0 +1,65 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+const colors = ['green', 'red', 'light-red', 'orange', 'brown'] as const
+
+type Color = (typeof colors)[number]
+
+export interface Props extends HTMLAttributes<'button'> {
+  color?: Color
+}
+
+const {
+  color = 'green',
+
+  // This will capture all other attributes
+  ...attributes
+} = Astro.props as Props
+
+const styles = [
+  'rounded-full',
+  'fixed',
+  'right-4',
+  'bottom-4',
+  'w-14',
+  'h-14',
+  'font-mono',
+  'font-bold',
+  'text-center',
+  'text-white',
+  'drop-shadow-md',
+  'transition-colors',
+  'focus:outline-none',
+  'focus:ring',
+]
+
+switch (color) {
+  case 'green':
+    styles.push('bg-green', 'hover:bg-green/80', 'focus:ring-green/40')
+    break
+
+  case 'red':
+    styles.push('bg-red', 'hover:bg-red/80', 'focus:ring-red/40')
+    break
+
+  case 'light-red':
+    styles.push('bg-light-red', 'hover:bg-light-red/80', 'focus:ring-light-red/40')
+    break
+
+  case 'orange':
+    styles.push('bg-orange', 'hover:bg-orange/80', 'focus:ring-orange/40')
+    break
+
+  case 'brown':
+    styles.push('bg-brown', 'hover:bg-brown/80', 'focus:ring-brown/40')
+    break
+}
+
+// If additonal styles are added to the component add them here
+if (attributes?.class) styles.push(attributes.class)
+---
+
+<button class:list={styles} {...attributes}>
+  <slot />
+</button>
+

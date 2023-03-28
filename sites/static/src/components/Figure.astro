@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+export type Props = HTMLAttributes<'figure'>
+
+const { ...attributes } = Astro.props as Props
+---
+
+<figure {...attributes}>
+  <slot name="image" />
+
+  <hr class="w-16 mx-auto mt-2 text-red" />
+
+  <slot />
+</figure>

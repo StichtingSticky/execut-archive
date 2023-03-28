@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+export type Props = HTMLAttributes<'div'>
+
+const { ...attributes } = Astro.props as Props
+---
+
+<div
+  class="fixed inset-0 z-50 bg-brown/40 backdrop-blur"
+  x-transition.opacity
+  x-cloak
+  {...attributes}>
+  <slot />
+</div>

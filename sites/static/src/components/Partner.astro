@@ -1,0 +1,63 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+
+import { Icon } from 'astro-icon'
+
+import Button from '~/components/Button.astro'
+
+export interface Props {
+  partner: CollectionEntry<'partners'>
+}
+
+const { partner } = Astro.props as Props
+
+const { data, render } = partner
+
+const { name, industry, logo, tier, contact } = data
+
+const { website, socials } = contact
+
+const { Content } = await render()
+---
+
+<article class="flex flex-col md:flex-row md:gap-4">
+  <aside class="md:w-64">
+    {logo.format === 'svg' ?
+      <img
+        class="block object-contain w-full h-56 md:h-auto"
+        src={logo.src}
+        alt={`${name} logo`}
+      />
+    :
+      <Image
+        class="block object-contain w-full h-56 md:h-auto"
+        src={logo}
+        alt={`${name} logo`}
+      />
+    }
+
+    <div class="flex justify-center mt-4 sm:mt-8">
+      {Object.entries(socials).map(([name, href]) => (
+        <a href={href}>
+          <Icon name={name} class="w-10 h-10 p-2 transition-colors fill-brown hover:bg-brown/40" />
+        </a>
+      ))}
+    </div>
+
+    <a
+      class="block mt-4 text-center underline transition-colors text-green hover:text-green/80 sm:mt-8"
+      href={website}>
+      {`Learn more about ${name}`}
+    </a>
+  </aside>
+
+  <div class="flex-1">
+    <h2 class="mt-8 font-mono text-2xl font-bold sm:mt-12 md:mt-0 text-red">{`About ${name}`}</h2>
+    <p class="mt-2 text-md text-brown/60">{industry}</p>
+
+    <div class="my-4 prose text-justify max-w-none sm:mt-6">
+      <Content />
+    </div>
+  </div>
+</article>

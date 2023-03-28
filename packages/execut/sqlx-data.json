@@ -1,0 +1,224 @@
+{
+  "db": "PostgreSQL",
+  "8237382d2cbff451ff6a7fd3dd21663ad8bd0de9c6bddfdf4ddc51a35d301a0e": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "linkedin",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "study",
+          "ordinal": 3,
+          "type_info": "Text"
+        },
+        {
+          "name": "degree",
+          "ordinal": 4,
+          "type_info": "Text"
+        },
+        {
+          "name": "institution",
+          "ordinal": 5,
+          "type_info": "Text"
+        },
+        {
+          "name": "graduation_year",
+          "ordinal": 6,
+          "type_info": "Text"
+        },
+        {
+          "name": "company_slug",
+          "ordinal": 7,
+          "type_info": "Text"
+        },
+        {
+          "name": "created_at",
+          "ordinal": 8,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 9,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid"
+        ]
+      }
+    },
+    "query": "select id\n              , name\n              , linkedin\n              , study\n              , degree\n              , institution\n              , graduation_year\n              , company_slug\n              , created_at\n              , updated_at\n           from users\n          where id = $1\n          limit 1"
+  },
+  "8d76f706bde0e3754d76ad70665aa02f5f03b837702c8e7061af6faae8ae43cd": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        }
+      ],
+      "nullable": [
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text"
+        ]
+      }
+    },
+    "query": "insert into users\n           ( id\n           , name\n           , linkedin\n           , study\n           , degree\n           , institution\n           , graduation_year\n           , company_slug\n           )\n         values\n           ( $1\n           , $2\n           , $3\n           , $4\n           , $5\n           , $6\n           , $7\n           , $8\n           )\n         returning id"
+  },
+  "a58073a147e3437befb2d337234310feff944ad3f3950a9981d0bca28ea3c5c4": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Text"
+        ]
+      }
+    },
+    "query": "insert into badges\n               ( user_id\n               , badge_code\n               )\n             values\n               ( $1\n               , $2\n               )"
+  },
+  "b1dd2ac709cb0775d47b3484411152f3655e12ddd57a46bd4f1b9e205156923a": {
+    "describe": {
+      "columns": [
+        {
+          "name": "user_id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        }
+      ],
+      "nullable": [
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "select user_id\n           from badges\n          where badge_code = $1\n          limit 1"
+  },
+  "b50a39a4cf74201cfb39056d49c04ede1b3f1e597c42b55ff184996f2973912c": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Uuid"
+        ]
+      }
+    },
+    "query": "insert into scans\n           ( initiator_id\n           , subject_id\n           )\n         values\n           ( $1\n           , $2\n           )"
+  },
+  "ddadc6181db8ac59622c90d154d7e66a81640ba03184d9fe296286b929e397ae": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "linkedin",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "study",
+          "ordinal": 3,
+          "type_info": "Text"
+        },
+        {
+          "name": "degree",
+          "ordinal": 4,
+          "type_info": "Text"
+        },
+        {
+          "name": "institution",
+          "ordinal": 5,
+          "type_info": "Text"
+        },
+        {
+          "name": "graduation_year",
+          "ordinal": 6,
+          "type_info": "Text"
+        },
+        {
+          "name": "company_slug",
+          "ordinal": 7,
+          "type_info": "Text"
+        },
+        {
+          "name": "created_at",
+          "ordinal": 8,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 9,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid"
+        ]
+      }
+    },
+    "query": "select u.id\n              , u.name\n              , u.linkedin\n              , u.study\n              , u.degree\n              , u.institution\n              , u.graduation_year\n              , u.company_slug\n              , u.created_at\n              , u.updated_at\n           from users as u, scans as s\n          where s.subject_id = u.id\n            and s.initiator_id = $1"
+  }
+}

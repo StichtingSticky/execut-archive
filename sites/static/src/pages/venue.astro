@@ -1,0 +1,59 @@
+---
+import Container from '~/components/Container.astro'
+import Section from '~/components/Section.astro'
+
+import Layout from '~/layouts/Landing.astro'
+---
+
+<Layout title="Venue">
+  <Container>
+    <Section>
+      <div class="flex flex-col md:flex-row">
+        <div class="mb-4 shrink basis-1/2">
+          <h1 class="font-mono text-3xl font-bold text-red sm:text-4xl">
+            Venue
+          </h1>
+
+          <p class="mt-4 sm:mt-6">
+            This year exec(ut) will be held in De Kom in Nieuwegein and is
+            easily accessible by public transport from USP and Utrecht Centraal.
+          </p>
+
+          <h2 class="mt-8 font-mono text-2xl font-bold sm:mt-12 text-red">
+            About De Kom
+          </h2>
+
+          <p class="mt-4 sm:mt-6">
+            De Kom is the city theatre and art centre of Nieuwegein, a fairly
+            young theatre built in 2012. The impressive building is designed by
+            Frits van Dongen from Architekten Cie. The mission of De Kom is to
+            be the cultural meeting point of Nieuwegein and allow people to
+            develop their talents and gain extraordinary cultural experiences.
+            This year the stage will be for exec(ut) conference and we will be
+            provided with a room for talks, workshops and a lounge in which we
+            will host the lunch, drinks and company stands. Take a break between
+            the talks and workshops to take a bite and talk with our beloved
+            companies!
+          </p>
+        </div>
+
+        <div class="shrink basis-1/2 md:mx-10">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d39278.063973949356!2d5.085325!3d52.027302!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcf5eea753bfdde58!2sDE%20KOM!5e0!3m2!1sen!2snl!4v1676752910214!5m2!1sen!2snl"
+            class="w-full h-64 my-4 border-none"
+            allowfullscreen
+            loading="lazy"
+            title="Direction to De Kom"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+          <address
+            class="leading-tight prose text-right text-mono text-brown/40">
+            Stadsplein 6
+            <br />
+            3431 LZ Nieuwegein
+          </address>
+        </div>
+      </div>
+    </Section>
+  </Container>
+</Layout>

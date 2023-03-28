@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
+
+import Container from '~/components/Container.astro'
+import Section from '~/components/Section.astro'
+
+import Layout from '~/layouts/Landing.astro'
+
+const partners = await getCollection('partners')
+
+const tiers = ['Platinum', 'Gold', 'Silver', 'Bronze'] as const
+---
+
+<Layout title="Partners">
+  <Container>
+    <Section>
+      <h1 class="font-mono text-3xl font-bold text-red sm:text-4xl">
+        Partners
+      </h1>
+
+      <p class="mt-4 sm:mt-8">
+        Without the generous support of our partners' exec(ut) would not have
+        been possible. Below you can find a list of our partners, most of which
+        you will be able to meet on the day itself. They will be attending
+        exec(ut) with a stand, so make sure to stop by and have a chat!
+      </p>
+
+      {tiers.map((tier) => (
+        <div class="mt-6 sm:mt-10">
+          <h2 class="font-mono text-2xl font-bold text-red">
+            {`${tier} ${tier.length > 0 ? 'Partners' : 'Partners'}`}
+          </h2>
+
+          <article class="grid grid-cols-1 gap-4 mt-2 md:grid-cols-2 lg:grid-cols-3">
+            {partners
+              .filter((partner) => partner.data.tier === tier)
+              .map((partner) => {
+                const { slug, data } = partner
+
+                const { name, industry, logo } = data
+
+                return (
+                  <a
+                    class="p-2 transition-colors rounded hover:bg-subtle-highlight"
+                    href={`/partners/${slug}`}>
+                    {logo.format === 'svg' ?
+                      <img
+                        class="block object-contain w-full h-56"
+                        src={logo.src}
+                        alt={`${name} logo`}
+                      />
+                    :
+                      <Image
+                        class="block object-contain w-full h-56"
+                        src={logo}
+                        alt={`${name} logo`}
+                      />
+                    }
+
+                    <h1 class="mt-2 font-mono text-lg font-bold">{name}</h1>
+                    <p class="font-mono italic text-brown/40">{industry}</p>
+                  </a>
+                )
+              })}
+          </article>
+        </div>
+
+        <hr class="w-full mt-4 sm:mt-8 text-subtle-highlight" />
+      ))}
+    </Section>
+  </Container>
+</Layout>

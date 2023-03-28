@@ -1,0 +1,73 @@
+---
+import '@fontsource/lora'
+import '@fontsource/ubuntu'
+import '@fontsource/ubuntu-mono'
+
+import '~/styles/global.css'
+
+export interface Props {
+  title?: string
+}
+
+const { title = 'A conference for and by IT students' } = Astro.props as Props
+
+const keywords = [
+  'exec(ut)',
+  'execut',
+  'execute',
+  'conference',
+  'congress',
+  'symposium',
+  'Utrecht',
+  'Nieuwegein',
+  'Kom',
+  'De Kom',
+  'stichting',
+  'studie',
+  'studievereniging',
+  'Sticky',
+  'IT',
+  'tech',
+  'technology',
+  'software',
+  'student',
+  'students',
+  'computer',
+  'information',
+  'science',
+  'sciences',
+  'university',
+]
+---
+
+<!DOCTYPE html>
+
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <meta name="theme-color" content="#ef4955" />
+  <meta name="color-scheme" content="only light" />
+
+  <meta name="author" content="Stichting Sticky" />
+  <meta name="description" content="exec(ut) is a conference for and by IT students" />
+  <meta name="keywords" content={keywords.join()} />
+
+  <meta name="generator" content={Astro.generator} />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+  <title>exec(ut) 2023 | {title}</title>
+</head>
+
+<body class="flex flex-col min-h-screen bg-off-white">
+  <slot />
+</body>
+
+</html>

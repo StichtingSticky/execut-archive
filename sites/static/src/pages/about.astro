@@ -1,0 +1,131 @@
+---
+import Container from '~/components/Container.astro'
+import Section from '~/components/Section.astro'
+
+import Layout from '~/layouts/Landing.astro'
+
+const committee = [
+  {
+    name: 'Jorden Bakker',
+    role: 'Chair',
+    contact: 'https://www.linkedin.com/in/jorden-bakker-b7300079/',
+  },
+  {
+    name: 'Julian Verouden',
+    role: 'Treasurer',
+    contact: 'https://www.linkedin.com/in/julian-verouden-5798791bb/',
+  },
+  {
+    name: 'Sem van Nieuwenhuizen',
+    role: 'Acquisition',
+    contact: 'https://www.linkedin.com/in/leuke-naam/',
+  },
+  {
+    name: 'Jasper de Winther',
+    role: 'Speakers',
+    contact: 'https://www.linkedin.com/in/jasper-de-winther-091228187/',
+  },
+  {
+    name: 'Lisanne Koetsier',
+    role: 'Location & Logistics',
+    contact: 'https://www.linkedin.com/in/lisanne-koetsier/',
+  },
+  {
+    name: 'Ruben Baggen',
+    role: 'Promotion',
+    contact: 'https://www.linkedin.com/in/ruben-baggen/',
+  },
+  {
+    name: 'Thirza Hiwat',
+    role: 'Board Member',
+    contact: 'https://www.linkedin.com/in/thiwat/',
+  },
+]
+---
+
+<Layout title="About Us">
+  <Container>
+    <Section id="about">
+      <h1 class="font-mono text-3xl font-bold text-red sm:text-4xl">
+        About Us
+      </h1>
+
+      <p class="mt-4 sm:mt-6">
+        exec(ut) is an event organised by Stichting Sticky. It is a conference
+        for and by students, offering a glimpse at the wondrous world of IT
+        beyond the university. We strive to provide a diverse programme and show
+        how exciting conferences can be. Our main way of contact is trough our
+        e-mail address:
+        <a
+          class="underline transition-colors text-green hover:text-green/80"
+          href="mainto:conference@execut.nl">conference@execut.nl</a>.
+      </p>
+
+      <p class="mt-4 sm:mt-6">
+        The organising committee consists of seven members, all of whom are
+        students of computing- and information sciences at Utrecht University:
+      </p>
+
+      <ul class="mt-4 sm:mt-6">
+        {committee.map(({ name, role, contact }) => (
+          <li class="grid grid-cols-2">
+            <a
+              class="underline transition-colors text-green hover:text-green/80"
+              href={contact}>
+              {name}
+            </a>
+            <p>{role}</p>
+          </li>
+        ))}
+      </ul>
+
+      <h2 class="mt-8 font-mono text-2xl font-bold sm:mt-12 text-red">
+        Archives
+      </h2>
+
+      <p class="mt-4 sm:mt-6">
+        Websites of previous exec(ut) editions are archived. Check out the
+        websites of the
+        <a
+          class="underline transition-colors text-green hover:text-green/80"
+          href="https://2018.execut.nl/">
+          2018</a>,
+        <a
+          class="underline transition-colors text-green hover:text-green/80"
+          href="https://2019.execut.nl/">
+          2019</a>,
+        <a
+          class="underline transition-colors text-green hover:text-green/80"
+          href="https://2020.execut.nl/">
+          2020</a>,
+        <a
+          class="underline transition-colors text-green hover:text-green/80"
+          href="https://2021.execut.nl/">
+          2021</a>, and
+        <a
+          class="underline transition-colors text-green hover:text-green/80"
+          href="https://2022.execut.nl/">
+          2022</a> editions.
+      </p>
+
+      <h2 class="mt-8 font-mono text-2xl font-bold sm:mt-12 text-red">
+        Acknowledgements
+      </h2>
+
+      <p class="mt-4 sm:mt-8">
+        Aside from our speakers, host, and parters, there are a few people and
+        organisations whom we would like to thank for their contributions to the
+        organisation of exec(ut). These are, in no particular order:
+      </p>
+
+      <code class="block my-4 sm:mt-8">
+        DomCode, for letting us take inspiration from their code of conduct;
+
+        <br />
+
+        The staff of Utrecht University's CS department for their support in
+        planning and promotion;
+      </code>
+    </Section>
+  </Container>
+</Layout>

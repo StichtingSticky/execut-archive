@@ -1,0 +1,30 @@
+---
+import type { Programme } from '~/components/Programme.astro'
+
+import Activity from '~/components/Activity.astro'
+
+export interface Props {
+  activities: Programme
+  time: string
+  previous: string
+}
+
+const { activities, time, previous } = Astro.props as Props
+---
+
+{ 'common' in activities ?
+  <li class="flex items-center gap-2 p-2 text-white rounded bg-green drop-shadow">
+    <p class="flex-1 font-mono">{activities.common}</p>
+
+    <time class="w-12 font-mono text-right">{time}</time>
+  </li>
+:
+  <li class="flex items-center gap-2 px-2">
+    <Activity
+      talk={activities.talk}
+      workshop={activities.workshop}
+      previous={previous} />
+
+    <time class="w-12 font-mono text-right">{time}</time>
+  </li>
+}

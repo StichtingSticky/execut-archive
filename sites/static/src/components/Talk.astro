@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+export interface Props {
+  talk: CollectionEntry<'talks'>
+}
+
+const { talk } = Astro.props as Props
+
+const { data, render } = talk
+
+const { title } = data
+
+const { Content } = await render()
+---
+
+<article>
+  <h1 class="mt-8 font-mono text-3xl font-bold sm:mt-6 md:mt-0 text-red sm:text-4xl">{title}</h1>
+
+  <div class="mt-4 prose text-justify max-w-none sm:mt-6">
+    <Content />
+  </div>
+</article>

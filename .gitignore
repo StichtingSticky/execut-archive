@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+target/
+
+# Keep **all** `.env` files out of version control
+.env
+.env*

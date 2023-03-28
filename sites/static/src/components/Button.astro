@@ -1,0 +1,76 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+const colors = ['green', 'red', 'light-red', 'orange', 'brown'] as const
+const sizes = ['small', 'medium', 'large'] as const
+
+type Color = (typeof colors)[number]
+type Size = (typeof sizes)[number]
+
+export interface Props extends HTMLAttributes<'a'> {
+  color?: Color
+  size?: Size
+}
+
+const {
+  color = 'green',
+  size = 'medium',
+
+  // This will capture all other attributes
+  ...attributes
+} = Astro.props as Props
+
+const styles = [
+  'rounded',
+  'w-fit',
+  'text-center',
+  'text-white',
+  'drop-shadow-md',
+  'transition-colors',
+  'focus:outline-none',
+  'focus:ring',
+]
+
+switch (color) {
+  case 'green':
+    styles.push('bg-green', 'hover:bg-green/80', 'focus:ring-green/40')
+    break
+
+  case 'red':
+    styles.push('bg-red', 'hover:bg-red/80', 'focus:ring-red/40')
+    break
+
+  case 'light-red':
+    styles.push('bg-light-red', 'hover:bg-light-red/80', 'focus:ring-light-red/40')
+    break
+
+  case 'orange':
+    styles.push('bg-orange', 'hover:bg-orange/80', 'focus:ring-orange/40')
+    break
+
+  case 'brown':
+    styles.push('bg-brown', 'hover:bg-brown/80', 'focus:ring-brown/40')
+    break
+}
+
+switch (size) {
+  case 'small':
+    styles.push('p-1', 'leading-snug', 'text-md')
+    break
+
+  case 'medium':
+    styles.push('p-2', 'leading-8', 'text-lg')
+    break
+
+  case 'large':
+    styles.push('p-4', 'leadnig-10', 'text-xl')
+    break
+}
+
+// If additonal styles are added to the component add them here
+if (attributes?.class) styles.push(attributes.class)
+---
+
+<a class:list={styles} {...attributes}>
+  <slot />
+</a>

@@ -1,0 +1,24 @@
+---
+import logo from '~/assets/logo-terminal.svg'
+---
+
+<nav
+  class="sticky top-0 z-50 flex flex-wrap items-center justify-center w-full sm:px-4 bg-gradient-to-r from-orange/80 via-red/80 to-light-red/80 drop-shadow-md backdrop-blur sm:static sm:justify-between sm:bg-none sm:px-0 sm:drop-shadow-none sm:backdrop-blur-none lg:my-12 lg:flex-row lg:flex-nowrap lg:px-8">
+  <div
+    class="items-center hidden mt-10 sm:flex sm:justify-between sm:pl-8 lg:mt-0 lg:grow lg:basis-0 lg:justify-start">
+    <img
+      class="w-12 h-12"
+      height={48}
+      width={48}
+      src={logo.src}
+      alt="exec(ut) logo"
+    />
+  </div>
+
+  <slot />
+
+  <div
+    class="hidden mt-10 sm:flex sm:pr-8 lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
+    <slot name="menu" />
+  </div>
+</nav>

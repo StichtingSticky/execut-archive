@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply font-serif;
+  }
+
+  [x-cloak] {
+    @apply hidden !important;
+  }
+}
+
+@tailwind variants;

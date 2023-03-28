@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+
+export interface Props {
+  speaker: CollectionEntry<'speakers'>
+}
+
+const { speaker } = Astro.props as Props
+
+const { data, render } = speaker
+
+const { name, description, portrait } = data
+
+const { Content } = await render()
+---
+
+<article>
+  <h2 class="mt-8 font-mono text-2xl font-bold sm:mt-12 md:mt-0 text-red">{`About ${name}`}</h2>
+
+  <p class="mt-2 text-md text-brown/60">{description}</p>
+
+  <div class="my-4 prose text-justify max-w-none sm:mt-6">
+    <Content />
+  </div>
+
+  <Image class="w-full h-auto rounded" src={portrait} alt={name} />
+</article>

@@ -1,0 +1,11 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+export type Props = HTMLAttributes<'section'>
+
+const { ...attributes } = Astro.props as Props
+---
+
+<section class="py-4 sm:py-8 md:py-10" {...attributes}>
+  <slot />
+</section>

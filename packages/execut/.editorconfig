@@ -1,0 +1,10 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = false
+
+[*.rs]
+indent_size = 4
+
+[Dockerfile]
+indent_size = 4

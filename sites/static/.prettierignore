@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+
+# Generated types
+.astro/
+
+# Ignore file for `pnpm`
+pnpm-lock.yaml

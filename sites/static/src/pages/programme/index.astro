@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
+
+import Container from '~/components/Container.astro'
+import Programme from '~/components/Programme.astro'
+import Section from '~/components/Section.astro'
+
+import Layout from '~/layouts/Landing.astro'
+
+const speakers = await getCollection('speakers')
+---
+
+<Layout title="Programme">
+  <Container>
+    <Section>
+      <h1 class="font-mono text-3xl font-bold text-red sm:text-4xl">
+        Programme
+      </h1>
+
+      <p class="mt-4 sm:mt-8">
+        On March 28, 2023 our venue will host 7 consecutive speakers, each of
+        whom will give a talk on a particular aspect of software and techonoly.
+        These talks will be held inside the Rabobankzaal.
+      </p>
+
+      <p class="mt-4 sm:mt-8">
+        Asside from these talks we will also host 3 workshops throughout the
+        day! You can sign up for these workshops using our
+        <a
+          class="underline transition-colors text-green hover:text-green/80"
+          href="https://pretix.svsticky.nl/execut/2023/">ticket store</a>.
+      </p>
+
+      <Programme />
+
+      <p class="mt-4 sm:mt-8">
+        Short breaks (5 minutes) are provided between talks.
+      </p>
+    </Section>
+
+    <Section>
+      <h1 class="font-mono text-3xl font-bold text-red sm:text-4xl">
+        Speakers
+      </h1>
+
+      <p class="mt-4 sm:mt-8">
+        Our speakers come from a wide variety of backgrounds and will be
+        presenting an equally wide variety of interesting talks. Below you can
+        find their bios and talk-abstracts, providing you with a sneak peak into
+        their presentations.
+      </p>
+
+      <div
+        class="grid grid-cols-2 gap-2 mt-8 sm:mt-12 sm:grid-cols-3 md:grid-cols-4">
+        {speakers.map(({ slug, data }) => {
+          const { name, description, portrait, host } = data
+
+          return (
+            <a
+              class="p-1 transition-colors rounded hover:bg-subtle-highlight"
+              href={`/programme/${slug}`}>
+              <Image
+                class="w-full rounded drop-shadow"
+                src={portrait}
+                alt={name} />
+
+              <h1 class="mt-2 font-mono text-lg font-bold">
+                {host ? `${name} (host)` : `${name}`}
+              </h1>
+              <p class="font-mono italic text-brown/40">{description}</p>
+            </a>
+          )
+        })}
+      </div>
+    </Section>
+  </Container>
+</Layout>

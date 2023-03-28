@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getEntryBySlug } from 'astro:content'
+
+export interface Props {
+  talk?: CollectionEntry<'talks'>
+  workshop?: CollectionEntry<'workshops'>
+  previous: string
+}
+
+const { talk, workshop, previous } = Astro.props as Props
+
+const speaker = talk && await getEntryBySlug('speakers', talk.slug)
+  .then(({ data }) => data.name)
+
+const provider = workshop && await getEntryBySlug('partners', workshop.slug)
+  .then(({ data }) => data.name)
+---
+
+{ talk &&
+  <a
+    class="flex-1 transition-opacity blok hover:opacity-80"
+    href={`/programme/${talk.slug}`}>
+    <small class="font-mono text-brown/60">{speaker}</small>
+    <p class="font-mono">{talk.data.title}</p>
+  </a>
+}
+
+{ workshop ?
+  <a
+    class="flex-1 transition-opacity blok hover:opacity-80"
+    href={`/programme/workshops/${workshop.slug}`}>
+    <small class="font-mono text-brown/60">{provider}</small>
+    <p class="font-mono">{workshop.data.title}</p>
+  </a>
+:
+  <span class="flex-1 blok"></span>
+}
