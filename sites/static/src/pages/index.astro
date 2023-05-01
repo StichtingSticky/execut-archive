@@ -2,6 +2,7 @@
 import logo from '~/assets/logo.svg'
 
 import Button from '~/components/Button.astro'
+import Container from '~/components/Container.astro';
 import Layout from '~/layouts/Landing.astro'
 
 const summary = {
@@ -42,29 +43,46 @@ const summary = {
 
     <h2
       class="my-2 text-2xl leading-snug text-red/80 sm:text-3xl sm:leading-normal">
-      For those willing to look further than their own classroom. We want to work
-      together, inspire each other, and commit ourselves to a better tomorrow.
-      Besides a range of interesting talks exec(ut) provides great networking
-      opportunities to those attending.
+      For those willing to look further than their own classroom. We want to
+      work together, inspire each other, and commit ourselves to a better
+      tomorrow. Besides a range of interesting talks exec(ut) provides great
+      networking opportunities to those attending.
     </h2>
 
-    <Button
-      class="mx-auto mt-12 mb-16"
-      size="large"
-      href="https://pretix.svsticky.nl/execut/2023/">
-      Get your ticket!
-    </Button>
+    <div class="flex justify-center gap-2 my-4">
+      <Button
+        size="medium"
+        href="https://photos.app.goo.gl/51YaeYGRQZ7Xj6oW7">
+        View photos
+      </Button>
+
+      <Button
+        size="medium"
+        href="https://www.youtube.com/playlist?list=PLvhFp91OuCryiPNd9dY55UR684O8Djw1L">
+        View recordings
+      </Button>
+    </div>
+
+    <div class="my-4 mb-10 overflow-hidden rounded shadow sm:mb-16 aspect-w-16 aspect-h-9">
+      <iframe
+        src="https://www.youtube.com/embed/kzIJxFxOAjs?controls=0"
+        title="YouTube video player"
+        allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share"
+        allowfullscreen />
+    </div>
 
     <figure class="grid grid-cols-2 grid-rows-2 gap-x-2 gap-y-4 sm:gap-6">
-      {Object.entries(summary).map(([title, { figure, href }]) => (
-        <a class="sm:text-center" href={href}>
-          <span class="font-mono text-sm leading-none capitalize text-light-red">
-            {title}
-          </span>
+      {
+        Object.entries(summary).map(([title, { figure, href }]) => (
+          <a class="sm:text-center" href={href}>
+            <span class="font-mono text-sm leading-none capitalize text-light-red">
+              {title}
+            </span>
 
-          <p class="mt-2 text-xl font-bold text-brown">{figure}</p>
-        </a>
-      ))}
+            <p class="mt-2 text-xl font-bold text-brown">{figure}</p>
+          </a>
+        ))
+      }
     </figure>
   </header>
 </Layout>
