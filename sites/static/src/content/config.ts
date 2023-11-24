@@ -1,7 +1,7 @@
-import { defineCollection, image, z } from 'astro:content'
+import { defineCollection, z } from 'astro:content'
 
 const articles = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     portrait: image(),
     name: z.string(),
     role: z.string(),
@@ -9,7 +9,7 @@ const articles = defineCollection({
 })
 
 const partners = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     name: z.string(),
     industry: z.string(),
     logo: image(),
@@ -32,7 +32,7 @@ const partners = defineCollection({
 })
 
 const speakers = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     name: z.string(),
     description: z.string(),
     portrait: image(),
