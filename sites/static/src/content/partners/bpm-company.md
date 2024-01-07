@@ -1,8 +1,8 @@
 ---
 name: BPM Company
-industry: IT Services and IT Consulting
+industry: IT Consulting and Full-Stack Development
 logo: ~/assets/partners/bpm-company.svg
-tier: Platinum
+tier: Gold
 contact:
   website: https://www.bpmcompany.eu/en/career/
   socials:
@@ -11,10 +11,8 @@ contact:
     linkedin: https://www.linkedin.com/company/bpm-company/
 ---
 
-BPM Company started in 2011 as the first Pega partner in the Netherlands, based on the conviction that software can be built in a better and more effective way. Since then we have fully developed ourselves as an organization and actively contributed to the Pega ecosystem in the Benelux.
+BPM Company is an IT organization based in Utrecht. We specialize in automating and optimizing business processes and have been doing so for our clients for 13 years. Typically, these involve end-to-end processes that transcend multiple departments within an organization, resulting in a high degree of dynamism and complexity. As a result, our consultants have a significant impact on the business operations of our clients within the top-500 segment, including companies like Rabobank, ING, Transavia, LeasePlan, and De Mandemakers Groep.
 
-By building innovative software with Pega, we optimize and automate business-critical processes and help our customers improve their customer satisfaction or sales. And one thing is for sure, the impact our consultants have is enormous!
+We implement our solutions using the innovative software platform Pega. This platform allows both visual modeling (low code) and building functionalities (high code) yourself. Consequently, Pega offers endless possibilities and enables the rapid development of applications.
 
-Not the biggest, but the best! That's what we're going for. So we like to challenge each other to be and remain the best and therefore invest in our people from the first day.
-
-Working with us means working at a family like organization where you as a colleague are central and where we like to organize great events. Will you join one of our BBQs, ski trip or one of our other events soon?
+Due to our clear quality vision, we pay a lot of attention to the personal and technical development of our colleagues. Additionally, we value the sense of family and organize several enjoyable company events annually, alongside our weekly Friday afternoon drinks.
